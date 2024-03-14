@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:r_player/view/connect_page.dart';
+import 'package:r_player/view/game_result_page.dart';
 import 'package:r_player/view/home_page.dart';
 import 'package:r_player/view/login_page.dart';
 import 'package:r_player/view/mission_details_page.dart';
@@ -17,13 +18,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/mission/result',
+      initialRoute: '/game/result',
       routes: {
         '/login': (context) => const LoginPage(),
         '/connect': (context) => const ConnectPage(),
         '/home': (context) => const HomePage(),
         '/mission/details': (context) => const MissionDetailsPage(),
         '/mission/result': (context) => const MissionResultPage(),
+        '/game/result': (context) => const GameResultPage(),
       },
     );
   }
