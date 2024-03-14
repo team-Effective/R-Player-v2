@@ -124,7 +124,7 @@ class LoginPage extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/home',
+                      '/connect',
                       (route) => false,
                     );
                   },
