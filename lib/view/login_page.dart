@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -122,7 +124,12 @@ class LoginPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 32, 0, 32),
                 child: InkWell(
-                  onTap: () {
+                  onTap: () async {
+                    Uuid uuid = const Uuid();
+                    String userId = uuid.v4();
+                    final prefs = await SharedPreferences.getInstance();
+                    prefs.setString('user-id', userId);
+
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       '/connect',
                       (route) => false,
@@ -150,7 +157,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     constraints: const BoxConstraints(minHeight: 0),
                     child: const Text(
-                      'ログイン',
+                      '登録',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
