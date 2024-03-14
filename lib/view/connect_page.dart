@@ -87,7 +87,7 @@ class ConnectPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(
-                                    Icons.rocket_launch,
+                                    Icons.connected_tv,
                                     size: 24,
                                     color: Color.fromRGBO(17, 241, 255, 1),
                                   ),
@@ -95,7 +95,7 @@ class ConnectPage extends StatelessWidget {
                                     width: 8,
                                   ),
                                   Text(
-                                    "connect",
+                                    "Connect",
                                     style: TextStyle(
                                       fontSize: 24,
                                       color: Color.fromRGBO(17, 241, 255, 1),
@@ -128,7 +128,11 @@ class ConnectPage extends StatelessWidget {
                                         .map(
                                           (str) => InkWell(
                                             onTap: () {
-                                              print('11');
+                                              Navigator.of(context)
+                                                  .pushNamedAndRemoveUntil(
+                                                '/home',
+                                                (route) => false,
+                                              );
                                             },
                                             child: Container(
                                               width: double.infinity,

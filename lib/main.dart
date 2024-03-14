@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:r_player/view/connect_page.dart';
+import 'package:r_player/view/home_page.dart';
 import 'package:r_player/view/login_page.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/login': (context) => const LoginPage(),
           '/connect': (context) => const ConnectPage(),
+          '/home': (context) => const HomePage(),
         },
     );
   }
