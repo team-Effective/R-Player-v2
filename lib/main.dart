@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/mission/list': (context) => const MissionListPage(),
         '/mission/details': (context) => const MissionDetailsPage(),
-        '/mission/result': (context) => const MissionResultPage(),
+        '/mission/result': (context) => const MissionResultPage(true),
         '/game/result': (context) => const GameResultPage(),
       },
     );
