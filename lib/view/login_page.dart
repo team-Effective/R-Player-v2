@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:r_player/model/shared_preferences_logic.dart';
 import 'package:uuid/uuid.dart';
 
 class LoginPage extends StatelessWidget {
@@ -127,8 +127,7 @@ class LoginPage extends StatelessWidget {
                   onTap: () async {
                     Uuid uuid = const Uuid();
                     String userId = uuid.v4();
-                    final prefs = await SharedPreferences.getInstance();
-                    prefs.setString('user-id', userId);
+                    await SharedPreferencesLogic().saveUserID(userId);
 
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       '/connect',
