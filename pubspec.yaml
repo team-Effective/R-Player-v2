@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences:
   uuid:
+  flutter_bluetooth_serial:
+  provider:
+  permission_handler:
 
 dev_dependencies:
   flutter_test:
