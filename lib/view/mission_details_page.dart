@@ -1,30 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:r_player/model/connect_websocket.dart';
-import 'package:r_player/model/shared_preferences_logic.dart';
+import 'package:r_player/logic/connect_websocket.dart';
+import 'package:r_player/logic/shared_preferences_logic.dart';
 
-class MissionDetailsPage extends StatelessWidget {
+class MissionDetailsPage extends StatefulWidget {
   const MissionDetailsPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => WebSocketProvider(),
-      child:_MissionDetailsPage(),
-    );
-  }
+@override
+  _MissionDetailsPageState createState() => _MissionDetailsPageState();
 }
 
-class _MissionDetailsPage extends StatelessWidget {
+class _MissionDetailsPageState extends State<MissionDetailsPage> {
+
+  //ミッション情報を格納する配列
+  Map<String, dynamic> missionList = 
+  {
+    "mission_id": "",
+    "mission_title": "",
+    "mission_detail": "",
+  };
+
   @override
-  Widget build(BuildContext context) {
-    //userIDを取得し、WebSocket接続を確立
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
+
+  void _fetchData() async {
+    // ユーザーIDを取得
     SharedPreferencesLogic().getUserID().then((userID) {
       if (userID != null) {
         final webSocketProvider = Provider.of<WebSocketProvider>(context , listen: false);
         webSocketProvider.connectWebSocket(userID , context); 
       }
     });
+    //TODO:ミッション情報を取得
+    
+
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(67, 67, 67, 1),
       body: Column(
