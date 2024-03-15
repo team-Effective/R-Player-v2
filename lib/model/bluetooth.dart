@@ -7,12 +7,11 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:provider/provider.dart';
 
 class Bluetooth extends ChangeNotifier {
-  BluetoothDevice? _selectedDevice;
+  late BluetoothDevice? _selectedDevice;
   late StreamSubscription<BluetoothDiscoveryResult> _streamSubscription;
   List<BluetoothDiscoveryResult> _results = [];
   late bool _isDiscovering = true;
 
-  BluetoothDevice? get selectedDevice => _selectedDevice;
   List<BluetoothDiscoveryResult> get results => _results;
   bool get isDiscovering => _isDiscovering;
 
@@ -53,6 +52,23 @@ class Bluetooth extends ChangeNotifier {
       print(error);
       throw Exception(error);
     });
+  }
+
+  void sendData() {
+    BluetoothConnection.toAddress(_selectedDevice!.address).then((_connection) {
+      print('デバイスと接続中');
+      _connection.output.add(Uint8List.fromList(utf8.encode('1')));
+      _connection.output.allSent;
+      _connection.dispose();
+    }).catchError((error) {
+      print('デバイスとの接続中にエラーが発生しました');
+      print(error);
+      throw Exception(error);
+    });
+  }
+
+  void disposeSelectedDevice() {
+    _selectedDevice = null;
   }
 
   void setSelectedDevice(BluetoothDevice device) {

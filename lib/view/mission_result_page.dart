@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:r_player/model/bluetooth.dart';
 
 class MissionResultPage extends StatelessWidget {
   const MissionResultPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool args = ModalRoute.of(context)?.settings.arguments as bool;
+    if (!args) {
+      final bluetooth = context.watch<Bluetooth>();
+      bluetooth.sendData();
+      bluetooth.dispose();
+    }
     return Scaffold(
       backgroundColor: const Color.fromRGBO(67, 67, 67, 1),
       body: Column(
@@ -53,9 +61,9 @@ class MissionResultPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: const Column(
+                      child: Column(
                         children: [
-                          Expanded(
+                          const Expanded(
                             flex: 1,
                             child: Center(
                               child: Row(
@@ -82,8 +90,8 @@ class MissionResultPage extends StatelessWidget {
                           ),
                           Expanded(
                             flex: 8,
-                            child: (true)
-                                ? Column(
+                            child: (args)
+                                ? const Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
@@ -100,7 +108,7 @@ class MissionResultPage extends StatelessWidget {
                                       ),
                                     ],
                                   )
-                                : Column(
+                                : const Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(

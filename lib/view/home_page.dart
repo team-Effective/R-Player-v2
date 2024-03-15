@@ -313,6 +313,16 @@ class HomePage extends StatelessWidget {
                                       ],
                                     ),
                                   ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/mission/result',
+                                        arguments: false,
+                                      );
+                                    },
+                                    child: Text('test'),
+                                  )
                                 ],
                               ),
                             ),
