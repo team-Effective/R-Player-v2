@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:r_player/model/connect_websocket.dart';
+import 'package:r_player/logic/connect_websocket.dart';
 
 class GameResultPage extends StatelessWidget {
   const GameResultPage({super.key});
