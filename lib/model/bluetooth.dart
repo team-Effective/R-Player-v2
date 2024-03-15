@@ -42,7 +42,7 @@ class Bluetooth extends ChangeNotifier {
   void connectAndSend(BluetoothDevice device, BuildContext context) {
     BluetoothConnection.toAddress(device.address).then((_connection) {
       print('デバイスと接続中');
-      _connection.output.add(Uint8List.fromList(utf8.encode('1')));
+      _connection.output.add(Uint8List.fromList(utf8.encode('0')));
       _connection.output.allSent;
       _connection.dispose();
 
