@@ -55,29 +55,48 @@ class MissionDetailsPage extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          const Expanded(
+                          Expanded(
                             flex: 1,
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.details,
-                                    size: 24,
-                                    color: Color.fromRGBO(17, 241, 255, 1),
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(
-                                    "Mission Details",
-                                    style: TextStyle(
-                                      fontSize: 24,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    icon: const Icon(
+                                      Icons.arrow_back,
                                       color: Color.fromRGBO(17, 241, 255, 1),
+                                      size: 24,
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                                const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.details,
+                                      size: 24,
+                                      color: Color.fromRGBO(17, 241, 255, 1),
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      "Mission Details",
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        color: Color.fromRGBO(17, 241, 255, 1),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const Expanded(
+                                  flex: 1,
+                                  child: SizedBox(),
+                                ),
+                              ],
                             ),
                           ),
                           Expanded(

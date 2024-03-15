@@ -4,6 +4,7 @@ import 'package:r_player/view/game_result_page.dart';
 import 'package:r_player/view/home_page.dart';
 import 'package:r_player/view/login_page.dart';
 import 'package:r_player/view/mission_details_page.dart';
+import 'package:r_player/view/mission_list_page.dart';
 import 'package:r_player/view/mission_result_page.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/connect': (context) => const ConnectPage(),
         '/home': (context) => const HomePage(),
+        '/mission/list': (context) => const MissionListPage(),
         '/mission/details': (context) => const MissionDetailsPage(),
         '/mission/result': (context) => const MissionResultPage(),
         '/game/result': (context) => const GameResultPage(),
