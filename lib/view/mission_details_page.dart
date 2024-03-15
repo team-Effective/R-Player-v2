@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:r_player/model/connect_websocket.dart';
+import 'package:r_player/model/shared_preferences_logic.dart';
 
 class MissionDetailsPage extends StatelessWidget {
   const MissionDetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => WebSocketProvider(),
+      child:_MissionDetailsPage(),
+    );
+  }
+}
+
+class _MissionDetailsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //userIDを取得し、WebSocket接続を確立
+    SharedPreferencesLogic().getUserID().then((userID) {
+      if (userID != null) {
+        final webSocketProvider = Provider.of<WebSocketProvider>(context , listen: false);
+        webSocketProvider.connectWebSocket(userID , context); 
+      }
+    });
     return Scaffold(
       backgroundColor: const Color.fromRGBO(67, 67, 67, 1),
       body: Column(

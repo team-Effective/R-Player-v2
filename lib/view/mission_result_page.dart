@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:r_player/model/connect_websocket.dart';
 
 class MissionResultPage extends StatelessWidget {
-  const MissionResultPage({super.key});
+  final bool result; 
+
+  const MissionResultPage(this.result, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final webSocketProvider = Provider.of<WebSocketProvider>(context, listen: false);
+    webSocketProvider.closeWebSocket; // WebSocket の切断
     return Scaffold(
       backgroundColor: const Color.fromRGBO(67, 67, 67, 1),
       body: Column(
@@ -53,9 +59,9 @@ class MissionResultPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: const Column(
+                      child: Column(
                         children: [
-                          Expanded(
+                          const Expanded(
                             flex: 1,
                             child: Center(
                               child: Row(
@@ -82,8 +88,8 @@ class MissionResultPage extends StatelessWidget {
                           ),
                           Expanded(
                             flex: 8,
-                            child: (true)
-                                ? Column(
+                            child: (result)
+                                ? const Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
@@ -100,7 +106,7 @@ class MissionResultPage extends StatelessWidget {
                                       ),
                                     ],
                                   )
-                                : Column(
+                                : const Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
@@ -118,7 +124,7 @@ class MissionResultPage extends StatelessWidget {
                                     ],
                                   ),
                           ),
-                          Expanded(
+                          const Expanded(
                             flex: 1,
                             child: SizedBox(),
                           )
