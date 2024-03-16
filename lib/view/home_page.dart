@@ -375,6 +375,16 @@ class _HomeState extends State<HomePage> {
                                       ],
                                     ),
                                   ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/mission/result',
+                                        arguments: false,
+                                      );
+                                    },
+                                    child: Text('test'),
+                                  )
                                 ],
                               ),
                             ),

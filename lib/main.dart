@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:r_player/logic/connect_websocket.dart';
 import 'package:r_player/logic/shared_preferences_logic.dart';
+import 'package:r_player/Controller/bluetooth_controller.dart';
+import 'package:r_player/model/bluetooth.dart';
 import 'package:r_player/view/connect_page.dart';
 import 'package:r_player/view/game_result_page.dart';
 import 'package:r_player/view/home_page.dart';
@@ -22,7 +24,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     String initialRoute = '/login';
 
     //端末に保存されているデータを取得
@@ -40,6 +41,10 @@ class MyApp extends StatelessWidget {
       providers: [
         // WebSocketProvider
         ChangeNotifierProvider(create: (_) => WebSocketProvider()),
+        ChangeNotifierProvider<Bluetooth>(create: (context) => Bluetooth(),),
+        ProxyProvider<Bluetooth, BluetoothController>(
+          update: (_, bluetooth, __) => BluetoothController(bluetooth),
+        ),
       ],
       child:MaterialApp(
         debugShowCheckedModeBanner: false,

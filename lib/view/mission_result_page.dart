@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:r_player/logic/connect_websocket.dart';
 import 'package:r_player/view/home_page.dart';
+import 'package:r_player/model/bluetooth.dart';
 
 class MissionResultPage extends StatelessWidget {
   final bool result;
@@ -42,6 +43,12 @@ class MissionResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // final webSocketProvider = Provider.of<WebSocketProvider>(context, listen: false);
     // webSocketProvider.closeWebSocket; // WebSocket の切断
+    bool args = ModalRoute.of(context)?.settings.arguments as bool;
+    if (!args) {
+      final bluetooth = context.watch<Bluetooth>();
+      bluetooth.sendData();
+      bluetooth.dispose();
+    }
     return Scaffold(
       backgroundColor: const Color.fromRGBO(67, 67, 67, 1),
       body: Column(
