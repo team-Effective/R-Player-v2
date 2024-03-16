@@ -36,8 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences:
   uuid:
+  web_socket_channel: ^2.4.4
+  provider: ^6.1.2
+  http: ^1.2.1
   flutter_bluetooth_serial:
-  provider:
   permission_handler:
 
 dev_dependencies:

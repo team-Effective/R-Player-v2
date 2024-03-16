@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:r_player/logic/connect_websocket.dart';
 
 class GameResultPage extends StatelessWidget {
   const GameResultPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final webSocketProvider = Provider.of<WebSocketProvider>(context, listen: false);
+    webSocketProvider.closeWebSocket; // WebSocket の切断
     return Scaffold(
       backgroundColor: const Color.fromRGBO(67, 67, 67, 1),
       body: Column(

@@ -1,7 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:r_player/logic/connect_websocket.dart';
+import 'package:r_player/logic/shared_preferences_logic.dart';
 
-class MissionDetailsPage extends StatelessWidget {
+class MissionDetailsPage extends StatefulWidget {
   const MissionDetailsPage({super.key});
+
+@override
+  _MissionDetailsPageState createState() => _MissionDetailsPageState();
+}
+
+class _MissionDetailsPageState extends State<MissionDetailsPage> {
+
+  //ミッション情報を格納する配列
+  Map<String, dynamic> missionList = 
+  {
+    "mission_id": "",
+    "mission_title": "",
+    "mission_detail": "",
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
+
+  void _fetchData() async {
+    // ユーザーIDを取得
+    SharedPreferencesLogic().getUserID().then((userID) {
+      if (userID != null) {
+        final webSocketProvider = Provider.of<WebSocketProvider>(context , listen: false);
+        webSocketProvider.connectWebSocket(userID , context); 
+      }
+    });
+    //TODO:ミッション情報を取得
+    
+
+
+  }
 
   @override
   Widget build(BuildContext context) {

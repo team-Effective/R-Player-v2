@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:r_player/logic/shared_preferences_logic.dart';
 import 'package:uuid/uuid.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+
+  final TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,54 +46,17 @@ class LoginPage extends StatelessWidget {
                   'assets/images/player_app_title.png',
                 ),
               ),
-              const Column(
+              Column(
                 children: [
                   TextField(
-                    style: TextStyle(
+                    controller: nameController,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
                     ),
-                    decoration: InputDecoration(
-                      labelText: 'ID',
-                      hintText: 'ユーザーIDを入力してください',
-                      contentPadding: EdgeInsets.all(8),
-                      labelStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                      hintStyle: TextStyle(
-                        color: Colors.grey,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 1,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 1,
-                        ),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.red,
-                          width: 1,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 24,
-                  ),
-                  TextField(
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                    ),
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      hintText: 'パスワードを入力してください',
+                    decoration: const InputDecoration(
+                      labelText: 'Name',
+                      hintText: 'ニックネームを入力してください',
                       contentPadding: EdgeInsets.all(8),
                       labelStyle: TextStyle(
                         color: Colors.grey,
@@ -127,9 +92,12 @@ class LoginPage extends StatelessWidget {
                   onTap: () async {
                     Uuid uuid = const Uuid();
                     String userId = uuid.v4();
-                    final prefs = await SharedPreferences.getInstance();
-                    prefs.setString('user-id', userId);
-
+                    await SharedPreferencesLogic().saveUserID(userId);
+                    await SharedPreferencesLogic().saveUserName(nameController.text);
+                     // コントローラーから入力された値を取得
+                    String playerName = nameController.text;
+                    //userIdとplayerNameをデータベースに保存
+                    // await http.post(Uri.parse("http://IP:PORT/api/player/insert/insert_player?player_id=$userId&player_name=$playerName"));
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       '/connect',
                       (route) => false,

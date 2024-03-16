@@ -1,12 +1,48 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:r_player/logic/connect_websocket.dart';
+import 'package:r_player/view/home_page.dart';
 import 'package:r_player/model/bluetooth.dart';
 
 class MissionResultPage extends StatelessWidget {
-  const MissionResultPage({super.key});
+  final bool result;
 
+  const MissionResultPage(this.result, {Key? key}) : super(key: key);
+
+  // @override
+  // _MissionResultPageState createState() => _MissionResultPageState();
+// }
+
+// class _MissionResultPageState extends State<MissionResultPage> {
+//   late Timer _timer;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _timer = Timer(Duration(seconds: 5), _navigateToHomePage);
+//   }
+
+//   @override
+//   void dispose() {
+//     _timer.cancel();
+//     super.dispose();
+//   }
+
+//   void _navigateToHomePage() {
+//     print('Navigating to home page...');
+//     if (mounted && context != null) {
+//       Navigator.pushAndRemoveUntil(
+//         context,
+//         MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+//         (route) => false,
+//       );
+//     }
+//   }
   @override
   Widget build(BuildContext context) {
+    // final webSocketProvider = Provider.of<WebSocketProvider>(context, listen: false);
+    // webSocketProvider.closeWebSocket; // WebSocket の切断
     bool args = ModalRoute.of(context)?.settings.arguments as bool;
     if (!args) {
       final bluetooth = context.watch<Bluetooth>();
@@ -90,7 +126,7 @@ class MissionResultPage extends StatelessWidget {
                           ),
                           Expanded(
                             flex: 8,
-                            child: (args)
+                            child: (result)
                                 ? const Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -126,7 +162,7 @@ class MissionResultPage extends StatelessWidget {
                                     ],
                                   ),
                           ),
-                          Expanded(
+                          const Expanded(
                             flex: 1,
                             child: SizedBox(),
                           )
